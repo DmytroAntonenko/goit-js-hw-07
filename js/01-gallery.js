@@ -3,45 +3,45 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-const imagesContainer = document.querySelector('.gallery');
-
-const cardsMarkup = createImageCardsMarkup(galleryItems);
+const imagesContainer = document.querySelector(".gallery");
+const cardsMarkup = createImagesCardsMarkup(galleryItems);
 
 imagesContainer.insertAdjacentHTML('afterbegin', cardsMarkup);
 
-imagesContainer.addEventListener('click', onImagesContainerClick);
 
 
-function createImageCardsMarkup (galleryItems) {
+function createImagesCardsMarkup(images) {
   return galleryItems.map(({preview, original, description}) => {
     return `
-<div class="gallery__item">
-  <a class="gallery__link" href='${preview}'>
-    <img
-      class="gallery__image"
-      src='${preview}'
-      data-source="${original}"
-      alt="${description}"
-    /> 
-  </a>
-</div>
-`;
-}).join('');
+    <div class="gallery__item">
+      <a class="gallery__link" href="${preview}">
+        <img
+          class="gallery__image"
+          src="${preview}"
+          data-source="${original}"
+          alt="${description}"
+        />
+      </a>
+    </div>
+`
+  }).join('')
+
 }
 
-function onImagesContainerClick(event) {
-    event.preventDefault();
-    if (!event.target.classList.contains('gallery__image')) {
-        return;
-    }
-   
-    const instance = basicLightbox.create(
-        `<img src="${event.target.dataset.source}" width="1280">`
-    );
-    
-    instance.show();
+imagesContainer.addEventListener('click', onImagesContainerClick);
 
-    window.addEventListener('keydown', onEscPress);
+function onImagesContainerClick(event) {
+  event.preventDefault();
+  if (!event.target.classList.contains('gallery__image')) {
+            return;
+  }
+  const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}">
+  `)
+
+  instance.show();
+
+  window.addEventListener('keydown', onEscPress);
 
     function onEscPress(event) {
         
