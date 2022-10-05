@@ -37,16 +37,19 @@ function onImagesContainerClick(event) {
   }
   const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}">
-  `)
+  `);
 
   instance.show();
 
   window.addEventListener('keydown', onEscPress);
 
-    function onEscPress(event) {
+  function onEscPress(event) {
         
-        if (event.code === 'Escape') {
-          instance.close()
-        }
+    if (event.code === 'Escape') {
+      instance.close();
+      }
     }
-}
+
+  window.removeEventListener('keyup', onEscPress);    
+
+  }
