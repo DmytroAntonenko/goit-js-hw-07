@@ -48,8 +48,6 @@ function onImagesContainerClick(event) {
     if (event.code === 'Escape') {
       instance.close();
       }
-    }
-
-  window.removeEventListener('keyup', onEscPress);    
-
+    window.removeEventListener('keydown', onEscPress);
+    }   
   }
