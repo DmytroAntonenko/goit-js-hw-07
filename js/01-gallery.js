@@ -40,14 +40,30 @@ function onImagesContainerClick(event) {
   `);
 
   instance.show();
-
-  window.addEventListener('keydown', onEscPress);
+  window.addEventListener('keydown', onEscPress)
 
   function onEscPress(event) {
         
     if (event.code === 'Escape') {
       instance.close();
-      }
-    window.removeEventListener('keydown', onEscPress);
-    }   
+      window.removeEventListener('keydown', onEscPress)
+      }  
   }
+}
+
+// const instance = basicLightbox.create(`
+//     <img src="${event.target.dataset.source}">
+//   `,
+//   {
+//     onShow: () => window.addEventListener('keydown', onEscPress),
+//     onClose: () => window.removeEventListener('keydown', onEscPress),
+//   },
+//   )
+//   instance.show();
+
+//   function onEscPress(event) {
+        
+//     if (event.code === 'Escape') {
+//       instance.close();
+//       }  
+//   }
